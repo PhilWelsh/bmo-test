@@ -27,9 +27,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <SearchBar placeholder="yes" label="Looking for food in..." />
-          <input type="text" name="city" list="cityname" />
-          <datalist id="cityname">{/* <CityOptions /> */}</datalist>
+          <SearchBar />
           <ResultsList />
         </header>
       </div>

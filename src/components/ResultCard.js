@@ -22,6 +22,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    maxWidth: 200,
   },
   RatingsSection: {
     display: "flex",
@@ -45,7 +46,7 @@ const ResultCard = ({ restaurant }) => {
           src={
             restaurant.thumb
               ? restaurant.thumb
-              : "https://www.payetteforward.com/wp-content/uploads/2018/12/My-iPhone-Cant-Find-My-Printer-Heres-The-Real-Fix.-828x466.jpg"
+              : "https://static.thenounproject.com/png/140281-200.png"
           }
         />
       </a>

@@ -4,7 +4,7 @@ import { getRestaurants } from "../store/actions/getRestaurants";
 import { createUseStyles } from "react-jss";
 import autocomplete from "./autoComplete";
 
-const SearchBar = ({ placeholder, label }) => {
+const SearchBar = () => {
   const cityRef = useRef(null);
   const detailsRef = useRef(null);
   const dispatch = useDispatch();
@@ -22,8 +22,16 @@ const SearchBar = ({ placeholder, label }) => {
 
   const useStyles = createUseStyles({
     SearchBar: {
-      color: "red",
+      display: "flex",
+      justifyContent: "space-around",
+      "& label": {
+        display: "block",
+        textAlign: "left",
+        fontSize: "1rem",
+        marginBottom: 0,
+      },
     },
+    SearchInput: {},
   });
 
   const handleCityChange = (e) => {
@@ -48,30 +56,36 @@ const SearchBar = ({ placeholder, label }) => {
   return (
     <>
       {/* ON INPUT TAKEN, THROW BACK THE EXACT NAMES OF CITIES THAT MATCH, EACH LINKED TO A SPECIFIC REQUEST */}
-      <label>{label}</label>
-      <div className="autocomplete" style={{ width: "300px;" }}>
-        <input
-          className={classes.SearchBar}
-          // name="address-level2"
-          type="text"
-          id="cityInput"
-          ref={cityRef}
-          aria-label="false"
-          placeholder={placeholder}
-          onChange={handleCityChange}
-          autoComplete={false}
-        />
-        <input
-          className={classes.SearchBar}
-          // name="address-level2"
-          type="text"
-          id="detailsInput"
-          ref={detailsRef}
-          aria-label="false"
-          placeholder={placeholder}
-          onChange={handleDetailsChange}
-          autoComplete={false}
-        />
+      <title>Looking for food in...</title>
+      <div className={classes.SearchBar}>
+        <div>
+          <label>City</label>
+          <input
+            className={classes.SearchInput}
+            // name="address-level2"
+            type="text"
+            id="cityInput"
+            ref={cityRef}
+            aria-label="false"
+            placeholder={"placeholder"}
+            onChange={handleCityChange}
+            autoComplete={false}
+          />
+        </div>
+        <div>
+          <label>Details</label>
+          <input
+            className={classes.SearchInput}
+            // name="address-level2"
+            type="text"
+            id="detailsInput"
+            ref={detailsRef}
+            aria-label="false"
+            placeholder={"placeholder"}
+            onChange={handleDetailsChange}
+            autoComplete={false}
+          />
+        </div>
       </div>
     </>
   );
