@@ -1,28 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getRestaurants } from "../store/actions/getRestaurants";
+import React from "react";
+import { useSelector } from "react-redux";
 import ResultCard from "./ResultCard";
 import { createUseStyles } from "react-jss";
 
+import Container from "./Container";
+
 const Restaurants = () => {
-  const dispatch = useDispatch();
-  const restaurantsList = useSelector(({ restaurants }) => {
-    console.log("state");
-    console.log(restaurants);
+  const restaurantData = useSelector(({ restaurants }) => {
     return restaurants;
   });
-  const { loading, error, restaurants } = restaurantsList;
-  useEffect(() => {
-    dispatch(getRestaurants("Toronto, ON"));
-  }, [dispatch]);
+  const { loading, error, restaurants } = restaurantData;
   return (
-    <>
+    <Container>
       {loading
         ? "Loading..."
         : error
         ? error.message
-        : restaurants.map((r) => <ResultCard restaurant={r} />)}
-    </>
+        : restaurants.map((r) => <ResultCard key={r.id} restaurant={r} />)}
+    </Container>
   );
 };
 

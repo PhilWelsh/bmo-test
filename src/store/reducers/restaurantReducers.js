@@ -1,6 +1,7 @@
-import { GET_RESTAURANTS, RESTAURANTS_ERROR } from "../types";
+import { GET_RESTAURANTS, RESTAURANTS_ERROR, GET_CITIES } from "../types";
 
 const initialState = {
+  possibleCities: [],
   restaurants: [],
   loading: true,
 };
@@ -17,6 +18,11 @@ export default function (state = initialState, action) {
       return {
         loading: false,
         error: action.payload,
+      };
+    case GET_CITIES:
+      return {
+        ...state,
+        possibleCities: action.payload,
       };
     default:
       return state;
