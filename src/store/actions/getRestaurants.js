@@ -12,8 +12,6 @@ export const getRestaurants = (searchValues) => async (dispatch) => {
         params: { q: searchValues.city },
       })
       .then(({ data }) => {
-        console.log("Break");
-        console.log(data);
         const cities = exactMatch
           ? data.location_suggestions.filter(
               (match) => match.name === searchValues.city
@@ -41,7 +39,6 @@ export const getRestaurants = (searchValues) => async (dispatch) => {
             params: params,
           })
           .then(({ data }) => {
-            console.log(data);
             return data.restaurants.map(({ restaurant }) => {
               const {
                 id,

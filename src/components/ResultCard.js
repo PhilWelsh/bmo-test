@@ -30,7 +30,6 @@ const useStyles = createUseStyles({
 });
 
 const Rating = ({ type, value }) => {
-  console.log(type);
   return <>{value}</>;
 };
 

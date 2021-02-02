@@ -17,7 +17,7 @@ const SearchBar = () => {
     ratingHigh: 5,
   });
   const citiesList = useSelector((possibleCities) => {
-    return possibleCities;
+    return possibleCities.possibleCities || "none";
   });
 
   const useStyles = createUseStyles({
@@ -48,10 +48,11 @@ const SearchBar = () => {
     return () => clearTimeout(debouncedRequest);
   }, [searchValues]);
 
-  useEffect(() => {
-    // autocomplete(cityRef.current, possibleCities);
-    console.log(citiesList.possibleCities);
-  }, [citiesList]);
+  // useEffect(() => {
+  //   autocomplete(cityRef.current, possibleCities);
+  //   console.log("possibleCities");
+  //   console.log(citiesList?.possibleCities);
+  // }, [citiesList]);
   const classes = useStyles();
   return (
     <>
@@ -62,14 +63,13 @@ const SearchBar = () => {
           <label>City</label>
           <input
             className={classes.SearchInput}
-            // name="address-level2"
+            name="address-level2"
             type="text"
             id="cityInput"
             ref={cityRef}
             aria-label="false"
             placeholder={"placeholder"}
             onChange={handleCityChange}
-            autoComplete={false}
           />
         </div>
         <div>
@@ -83,7 +83,6 @@ const SearchBar = () => {
             aria-label="false"
             placeholder={"placeholder"}
             onChange={handleDetailsChange}
-            autoComplete={false}
           />
         </div>
       </div>
