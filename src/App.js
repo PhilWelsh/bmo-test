@@ -12,16 +12,6 @@ import ResultsList from "./components/ResultsList";
 // ON MATCHING/SELECTING CITY NAME, POPULATE UNDERNEATH COMPONENT WITH MATCHING NAME
 
 function App() {
-  // const CityOptions = () => {
-  //   return (
-  //     <>
-  //       {cities.map((city) => (
-  //         <option key={city.id}>{city.name}</option>
-  //       ))}
-  //     </>
-  //   );
-  // };
-
   return (
     <Provider store={store}>
       <div className="App">
@@ -37,6 +27,15 @@ function App() {
 
 export default App;
 
+// const CityOptions = () => {
+//   return (
+//     <>
+//       {cities.map((city) => (
+//         <option key={city.id}>{city.name}</option>
+//       ))}
+//     </>
+//   );
+// };
 //TSX
 // import React,{useState,useEffect} from 'react';
 // import logo from './logo.svg';

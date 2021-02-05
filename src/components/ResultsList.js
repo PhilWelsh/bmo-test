@@ -9,14 +9,27 @@ const Restaurants = () => {
   const restaurantData = useSelector(({ restaurants }) => {
     return restaurants;
   });
-  const { loading, error, restaurants } = restaurantData;
+  const cities = useSelector(({ possibleCities }) => {
+    console.log(possibleCities);
+    return possibleCities;
+  });
+  const { loading, error, restaurants, init } = restaurantData;
   return (
     <Container>
-      {loading
-        ? "Loading..."
-        : error
-        ? error.message
-        : restaurants.map((r) => <ResultCard key={r.id} restaurant={r} />)}
+      {init ? (
+        "Search for a restaurant using the fields above"
+      ) : loading ? (
+        "Searching..."
+      ) : error ? (
+        error.message
+      ) : (
+        <>
+          Showing results for {console.log(cities)}
+          {restaurants.map((r) => (
+            <ResultCard key={r.id} restaurant={r} />
+          ))}
+        </>
+      )}
     </Container>
   );
 };

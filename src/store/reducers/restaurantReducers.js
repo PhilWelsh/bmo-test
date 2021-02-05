@@ -1,13 +1,25 @@
-import { GET_RESTAURANTS, RESTAURANTS_ERROR, GET_CITIES } from "../types";
+import {
+  GET_RESTAURANTS,
+  RESTAURANTS_ERROR,
+  LOADING_RESTAURANTS,
+  GET_CITIES,
+} from "../types";
 
 const initialState = {
   possibleCities: [],
   restaurants: [],
-  loading: true,
+  loading: false,
+  init: true,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case LOADING_RESTAURANTS:
+      return {
+        ...state,
+        loading: true,
+        init: false,
+      };
     case GET_RESTAURANTS:
       return {
         ...state,

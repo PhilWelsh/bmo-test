@@ -1,8 +1,16 @@
-import { GET_RESTAURANTS, RESTAURANTS_ERROR, GET_CITIES } from "../types";
+import {
+  GET_RESTAURANTS,
+  RESTAURANTS_ERROR,
+  LOADING_RESTAURANTS,
+  GET_CITIES,
+} from "../types";
 import axios from "axios";
 
 export const getRestaurants = (searchValues) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING_RESTAURANTS,
+    });
     const exactMatch = false;
     const cityRes = await axios
       .get(`https://developers.zomato.com/api/v2.1/cities`, {

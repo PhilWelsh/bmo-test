@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRestaurants } from "../store/actions/getRestaurants";
 import { createUseStyles } from "react-jss";
 import autocomplete from "./autoComplete";
+import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 
 const SearchBar = () => {
   const cityRef = useRef(null);
@@ -42,10 +43,13 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    const debouncedRequest = setTimeout(() => {
-      dispatch(getRestaurants(searchValues));
-    }, 1000);
-    return () => clearTimeout(debouncedRequest);
+    if (searchValues.city.length > 0) {
+      const debouncedRequest = setTimeout(() => {
+        dispatch(getRestaurants(searchValues));
+      }, 1000);
+      return () => clearTimeout(debouncedRequest);
+    } else {
+    }
   }, [searchValues]);
 
   // useEffect(() => {
@@ -76,7 +80,6 @@ const SearchBar = () => {
           <label>Details</label>
           <input
             className={classes.SearchInput}
-            // name="address-level2"
             type="text"
             id="detailsInput"
             ref={detailsRef}
