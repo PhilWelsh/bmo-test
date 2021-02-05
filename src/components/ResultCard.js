@@ -71,29 +71,41 @@ const Rating = ({ type, value }) => {
 };
 
 const ResultCard = ({ restaurant }) => {
+  const {
+    id,
+    name,
+    cuisines,
+    price_range,
+    user_rating,
+    thumb,
+    location,
+    city,
+    url,
+  } = restaurant;
   const classes = useStyles();
   return (
-    <div className={classes.ResultCard} key={restaurant.id}>
-      <a className={classes.ResultImageContainer} href={restaurant.url}>
+    <div className={classes.ResultCard} key={id}>
+      <a className={classes.ResultImageContainer} href={url}>
         <img
           style={{
             width: "inherit",
           }}
           src={
-            restaurant.thumb
-              ? restaurant.thumb
+            thumb
+              ? thumb
               : "https://static.thenounproject.com/png/140281-200.png"
           }
+          alt={name}
         />
       </a>
       <div className={classes.ResultInfo}>
-        <h1>{restaurant.name}</h1>
-        <p>{restaurant.cuisines}</p>
-        <p>{restaurant.location}</p>
-        <p>{restaurant.city}</p>
+        <h1>{name}</h1>
+        <p>{cuisines}</p>
+        <p>{location}</p>
+        <p>{city}</p>
         <div className={classes.RatingsSection}>
-          <Rating type="price" value={restaurant.price_range} />
-          <Rating type="rating" value={restaurant.user_rating} />
+          <Rating type="price" value={price_range} />
+          <Rating type="rating" value={user_rating} />
         </div>
       </div>
     </div>

@@ -9,10 +9,16 @@ const Restaurants = () => {
   const restaurantData = useSelector(({ restaurants }) => {
     return restaurants;
   });
-  const cities = useSelector(({ possibleCities }) => {
-    console.log(possibleCities);
-    return possibleCities;
-  });
+  // const Cities = useSelector(({ restaurants }) => {
+  //   return (
+  //     <>
+  //       {restaurants.possibleCities.map((c) => {
+  //         return <span key={c}>{c}</span>;
+  //       })}
+  //     </>
+  //   );
+  // });
+  console.log(restaurantData.possibleCities);
   const { loading, error, restaurants, init } = restaurantData;
   return (
     <Container>
@@ -24,7 +30,28 @@ const Restaurants = () => {
         error.message
       ) : (
         <>
-          Showing results for {console.log(cities)}
+          {restaurants.length ? (
+            <div>
+              <p style={{ margin: 0 }}>Showing Results from:</p>
+              {restaurantData.possibleCities.map((c) => (
+                <span
+                  key={c}
+                  style={{
+                    padding: 5,
+                    margin: 5,
+                    border: "1px solid white",
+                    borderRadius: 5,
+                    fontSize: "1rem",
+                  }}
+                >
+                  {" "}
+                  {c}
+                </span>
+              ))}
+            </div>
+          ) : (
+            `No results available`
+          )}
           {restaurants.map((r) => (
             <ResultCard key={r.id} restaurant={r} />
           ))}
