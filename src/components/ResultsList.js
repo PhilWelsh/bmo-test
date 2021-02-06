@@ -1,24 +1,37 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ResultCard from "./ResultCard";
 import { createUseStyles } from "react-jss";
-
+import ResultCard from "./ResultCard";
 import Container from "./Container";
 
+// const fakeResults = true;
+
+// const fakeRestaurants = [
+//   {
+//     id: 1,
+//     name: 'Johns fake Restaurant',
+//     cuisines: ['Pizza Pie', 'spaghetti'],
+//     price_range: 2,
+//     user_rating: 3.6,
+//     thumb: null,
+//     location: 'Downtown',
+//     city: 'Toronto',
+//     url: '',
+//   },
+// ];
+
+const useStyles = createUseStyles({
+  cityTag: {
+    padding: 5,
+    margin: 5,
+    border: "1px solid white",
+    borderRadius: 5,
+    fontSize: "1rem",
+  },
+});
 const Restaurants = () => {
-  const restaurantData = useSelector(({ restaurants }) => {
-    return restaurants;
-  });
-  // const Cities = useSelector(({ restaurants }) => {
-  //   return (
-  //     <>
-  //       {restaurants.possibleCities.map((c) => {
-  //         return <span key={c}>{c}</span>;
-  //       })}
-  //     </>
-  //   );
-  // });
-  console.log(restaurantData.possibleCities);
+  const classes = useStyles();
+  const restaurantData = useSelector(({ restaurants }) => restaurants);
   const { loading, error, restaurants, init } = restaurantData;
   return (
     <Container>
@@ -34,17 +47,7 @@ const Restaurants = () => {
             <div>
               <p style={{ margin: 0 }}>Showing Results from:</p>
               {restaurantData.possibleCities.map((c) => (
-                <span
-                  key={c}
-                  style={{
-                    padding: 5,
-                    margin: 5,
-                    border: "1px solid white",
-                    borderRadius: 5,
-                    fontSize: "1rem",
-                  }}
-                >
-                  {" "}
+                <span key={c} className={classes.cityTag}>
                   {c}
                 </span>
               ))}
@@ -62,34 +65,3 @@ const Restaurants = () => {
 };
 
 export default Restaurants;
-// const ResultsList = () => {
-//   // const useStyles = createUseStyles({
-//   //   SearchBar: {
-//   //     color: "red",
-//   //   },
-//   // });
-//   // const classes = useStyles();
-//   return (
-//     <div>
-//       {/* {results.map((result) => {
-//         return <Result result={result} onDelete={onDelete} key={result.id} />;
-//       })} */}
-//     </div>
-//   );
-// };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     results: state,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onDelete: (id) => {
-//       dispatch(deleteResult(id));
-//     },
-//   };
-// };
-
-// export default ResultsList(mapStateToProps, mapDispatchToProps)(ResultsList);

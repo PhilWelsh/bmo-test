@@ -1,4 +1,8 @@
+import React from "react";
 import { createUseStyles } from "react-jss";
+
+type Props= {children:React.ReactNode}
+
 const useStyles = createUseStyles({
   Container: {
     width: 1000,
@@ -7,7 +11,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Container = ({ children }) => {
+const Container = ({children}: Props) => {
   const classes = useStyles();
   return <div className={classes.Container}>{children}</div>;
 };

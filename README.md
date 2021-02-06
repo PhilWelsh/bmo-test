@@ -44,3 +44,24 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Known Bugs
+
+> Unknown searches sometimes trigger all restaurants to return
+> City search is a 'q' search, will return anything, not just cities.
+
+## ToDos
+
+> filter returned cities (x), clear filter if search changes
+> a11y, WCAG compliance check
+> lighthouse check
+> Add Locales
+> Add optional Submit button
+> Suggest current location
+> Style
+> Develop styles for mobile/desktop
+> Filter by Star Rating
+> Paginate results
+> Create cancellable requests for optimistic response
+> Update all files to Typescript
+> Add Testing

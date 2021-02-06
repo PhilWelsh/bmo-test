@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+
 const useStyles = createUseStyles({
   ResultCard: {
     display: "flex",
@@ -33,18 +34,18 @@ const useStyles = createUseStyles({
 //     return (
 //       <svg>
 //         <defs>
-//           <linearGradient id={`star${value}`} x1="0%" y1="0%" x2="100%" y2="0%">
-//             <stop offset="0%" stop-opacity="1" stop-color="yellow" />
-//             <stop offset={`${partial}%`} stop-opacity="1" stop-color="yellow" />
-//             <stop offset={`${partial}%`} stop-opacity="0" stop-color="yellow" />
-//             <stop offset="100%" stop-opacity="0" stop-color="yellow" />
+//           <linearGradient id={`star${value}`} x1='0%' y1='0%' x2='100%' y2='0%'>
+//             <stop offset='0%' stop-opacity='1' stop-color='yellow' />
+//             <stop offset={`${partial}%`} stop-opacity='1' stop-color='yellow' />
+//             <stop offset={`${partial}%`} stop-opacity='0' stop-color='yellow' />
+//             <stop offset='100%' stop-opacity='0' stop-color='yellow' />
 //           </linearGradient>
 //         </defs>
-//         <g id="icon-star">
+//         <g id='icon-star'>
 //           <path
-//             fill={partial ? `url(#star${value})` : full ? "yellow" : "white"}
-//             d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
-// l11.547-1.2L16.026,0.6L20.388,10.918z"
+//             fill={partial ? `url(#star${value})` : full ? 'yellow' : 'white'}
+//             d='M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+// l11.547-1.2L16.026,0.6L20.388,10.918z'
 //           ></path>
 //         </g>
 //       </svg>
@@ -58,15 +59,15 @@ const Rating = ({ type, value }) => {
   const ratingRender = [...Array(5)].map((e, i) => {
     const full = i < Math.round(value);
     return (
-      <span key={i} style={{ color: full && "yellow" }}>
+      <span key={e} style={{ color: full && "yellow" }}>
         {type === "price" ? "$" : "★"}
       </span>
     );
   });
   return value > 0 ? (
-    <div aria-label={`${type + " " + value}/5`}>{ratingRender}</div>
+    <div aria-label={`${type}: ${value}/5`}>{ratingRender}</div>
   ) : (
-    <div aria-label={`no ${type} rating`}></div>
+    <div aria-label={`no ${type} rating`} />
   );
 };
 
@@ -75,8 +76,8 @@ const ResultCard = ({ restaurant }) => {
     id,
     name,
     cuisines,
-    price_range,
-    user_rating,
+    priceRange,
+    userRating,
     thumb,
     location,
     city,
@@ -90,11 +91,7 @@ const ResultCard = ({ restaurant }) => {
           style={{
             width: "inherit",
           }}
-          src={
-            thumb
-              ? thumb
-              : "https://static.thenounproject.com/png/140281-200.png"
-          }
+          src={thumb || "https://static.thenounproject.com/png/140281-200.png"}
           alt={name}
         />
       </a>
@@ -104,8 +101,8 @@ const ResultCard = ({ restaurant }) => {
         <p>{location}</p>
         <p>{city}</p>
         <div className={classes.RatingsSection}>
-          <Rating type="price" value={price_range} />
-          <Rating type="rating" value={user_rating} />
+          <Rating type="price" value={priceRange} />
+          <Rating type="rating" value={userRating} />
         </div>
       </div>
     </div>

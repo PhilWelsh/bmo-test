@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getRestaurants } from "../store/actions/getRestaurants";
+import { useDispatch } from "react-redux";
 import { createUseStyles } from "react-jss";
-import autocomplete from "./autoComplete";
-import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
+import getRestaurants from "../store/actions/getRestaurants";
+import Container from "./Container";
 
 const SearchBar = () => {
   const cityRef = useRef(null);
@@ -17,19 +16,25 @@ const SearchBar = () => {
     ratingLow: 0,
     ratingHigh: 5,
   });
-  const citiesList = useSelector((possibleCities) => {
-    return possibleCities.possibleCities || "none";
-  });
+
+  // for autocomplete
+  // const citiesList = useSelector(
+  //   (possibleCities) => possibleCities.possibleCities || "none"
+  // );
 
   const useStyles = createUseStyles({
     SearchBar: {
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "center",
+      flexWrap: "wrap",
       "& label": {
         display: "block",
         textAlign: "left",
         fontSize: "1rem",
         marginBottom: 0,
+      },
+      "& input": {
+        display: "block",
       },
     },
     SearchInput: {},
@@ -41,55 +46,58 @@ const SearchBar = () => {
   const handleDetailsChange = (e) => {
     setSearchValues({ ...searchValues, details: e.target.value });
   };
-
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (searchValues.city.length > 0) {
       const debouncedRequest = setTimeout(() => {
         dispatch(getRestaurants(searchValues));
       }, 1000);
       return () => clearTimeout(debouncedRequest);
-    } else {
     }
   }, [searchValues]);
 
   // useEffect(() => {
   //   autocomplete(cityRef.current, possibleCities);
-  //   console.log("possibleCities");
+  //   console.log('possibleCities');
   //   console.log(citiesList?.possibleCities);
   // }, [citiesList]);
   const classes = useStyles();
   return (
-    <>
+    <Container>
       {/* ON INPUT TAKEN, THROW BACK THE EXACT NAMES OF CITIES THAT MATCH, EACH LINKED TO A SPECIFIC REQUEST */}
-      <title>Looking for food in...</title>
-      <div className={classes.SearchBar}>
+      <h1>Looking for food in...</h1>
+      <form className={classes.SearchBar}>
         <div>
-          <label>City</label>
-          <input
-            className={classes.SearchInput}
-            name="address-level2"
-            type="text"
-            id="cityInput"
-            ref={cityRef}
-            aria-label="false"
-            placeholder={"placeholder"}
-            onChange={handleCityChange}
-          />
+          <label htmlFor="cityInput">
+            City
+            <input
+              className={classes.SearchInput}
+              name="address-level2"
+              type="text"
+              id="cityInput"
+              ref={cityRef}
+              aria-label="cityInput"
+              placeholder="enter a city"
+              onChange={handleCityChange}
+            />
+          </label>
         </div>
         <div>
-          <label>Details</label>
-          <input
-            className={classes.SearchInput}
-            type="text"
-            id="detailsInput"
-            ref={detailsRef}
-            aria-label="false"
-            placeholder={"placeholder"}
-            onChange={handleDetailsChange}
-          />
+          <label htmlFor="detailsInput">
+            Details
+            <input
+              className={classes.SearchInput}
+              type="text"
+              id="detailsInput"
+              ref={detailsRef}
+              aria-label="detailsInput"
+              placeholder="other search details"
+              onChange={handleDetailsChange}
+            />
+          </label>
         </div>
-      </div>
-    </>
+      </form>
+    </Container>
   );
 };
 

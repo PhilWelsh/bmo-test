@@ -12,7 +12,7 @@ const initialState = {
   init: true,
 };
 
-export default function (state = initialState, action) {
+const restaurantReducers = (state = initialState, action) => {
   switch (action.type) {
     case LOADING_RESTAURANTS:
       return {
@@ -39,4 +39,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default restaurantReducers;
