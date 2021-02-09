@@ -55,11 +55,17 @@ const useStyles = createUseStyles({
 // const partial =
 //   i < value && i + 1 > value ? Math.round((value - i) * 100) : null;
 
-const Rating = ({ type, value }) => {
+type RatingProps = {
+  type:string,
+  value:number
+}
+
+const Rating = ({ type, value }:RatingProps) => {
   const ratingRender = [...Array(5)].map((e, i) => {
-    const full = i < Math.round(value);
+    
+    const valueColor:string = i < Math.round(value) ? "yellow" : "initial"
     return (
-      <span key={e} style={{ color: full && "yellow" }}>
+      <span key={e} style={{ color: valueColor }}>
         {type === "price" ? "$" : "★"}
       </span>
     );
@@ -71,18 +77,29 @@ const Rating = ({ type, value }) => {
   );
 };
 
-const ResultCard = ({ restaurant }) => {
+type Restaurant={restaurant:{
+  id:number,
+  name:string,
+  cuisines:string,
+  priceRange:number,
+  userRating:number,
+  thumb:string,
+  location:string,
+  city:string,
+  url:string
+}}
+const ResultCard = ({ restaurant}:Restaurant ) => {
   const {
-    id,
-    name,
-    cuisines,
-    priceRange,
-    userRating,
-    thumb,
-    location,
-    city,
-    url,
-  } = restaurant;
+      id,
+      name,
+      cuisines,
+      priceRange,
+      userRating,
+      thumb,
+      location,
+      city,
+      url
+  }= restaurant
   const classes = useStyles();
   return (
     <div className={classes.ResultCard} key={id}>
