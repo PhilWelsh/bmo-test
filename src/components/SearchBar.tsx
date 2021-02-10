@@ -1,3 +1,4 @@
+import * as React from "react"
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { createUseStyles } from "react-jss";
@@ -40,10 +41,10 @@ const SearchBar = () => {
     SearchInput: {},
   });
 
-  const handleCityChange = (e) => {
+  const handleCityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, city: e.target.value });
   };
-  const handleDetailsChange = (e) => {
+  const handleDetailsChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, details: e.target.value });
   };
   // eslint-disable-next-line consistent-return

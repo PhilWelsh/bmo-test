@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+import {Restaurant} from "../interfaces"
 
 const useStyles = createUseStyles({
   ResultCard: {
@@ -77,18 +78,8 @@ const Rating = ({ type, value }:RatingProps) => {
   );
 };
 
-type Restaurant={restaurant:{
-  id:number,
-  name:string,
-  cuisines:string,
-  priceRange:number,
-  userRating:number,
-  thumb:string,
-  location:string,
-  city:string,
-  url:string
-}}
-const ResultCard = ({ restaurant}:Restaurant ) => {
+
+const ResultCard = ({ restaurant }:Restaurant ) => {
   const {
       id,
       name,
