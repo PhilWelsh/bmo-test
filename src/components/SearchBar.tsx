@@ -68,35 +68,31 @@ const SearchBar = () => {
       {/* ON INPUT TAKEN, THROW BACK THE EXACT NAMES OF CITIES THAT MATCH, EACH LINKED TO A SPECIFIC REQUEST */}
       <h1>Looking for food in...</h1>
       <form className={classes.SearchBar}>
-        <div>
-          <label htmlFor="cityInput">
-            City
-            <input
-              className={classes.SearchInput}
-              name="address-level2"
-              type="text"
-              id="cityInput"
-              ref={cityRef}
-              aria-label="cityInput"
-              placeholder="enter a city"
-              onChange={handleCityChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="detailsInput">
-            Details
-            <input
-              className={classes.SearchInput}
-              type="text"
-              id="detailsInput"
-              ref={detailsRef}
-              aria-label="detailsInput"
-              placeholder="other search details"
-              onChange={handleDetailsChange}
-            />
-          </label>
-        </div>
+        <label htmlFor="cityInput">
+          City
+          <input
+            className={classes.SearchInput}
+            name="address-level2"
+            type="text"
+            id="cityInput"
+            ref={cityRef}
+            aria-label="cityInput"
+            placeholder="enter a city"
+            onChange={handleCityChange}
+          />
+        </label>
+        <label htmlFor="detailsInput">
+          Details
+          <input
+            className={classes.SearchInput}
+            type="text"
+            id="detailsInput"
+            ref={detailsRef}
+            aria-label="detailsInput"
+            placeholder="other search details"
+            onChange={handleDetailsChange}
+          />
+        </label>
       </form>
     </Container>
   );

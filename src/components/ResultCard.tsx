@@ -3,31 +3,43 @@ import {Restaurant} from "../interfaces"
 
 const useStyles = createUseStyles({
   ResultCard: {
-    display: "flex",
+    display: "grid",
     width: "100%",
     borderRadius: 10,
     border: "2px solid white",
     marginTop: 10,
     padding: 10,
     boxSizing: "border-box",
+    '@media (min-width: 500px)': {
+      gridTemplateColumns: "200px minmax(250px,auto)",
+    }
   },
   ResultInfo: {
     display: "flex",
     flexDirection: "column",
-    textAlign: "left",
+    margin: "auto",
+    '@media (min-width: 500px)': {
     marginLeft: 10,
+      textAlign: "left",
+
+    },
     "& h1": { fontSize: "1.5rem" },
     "& p": { fontSize: "1rem" },
     "& h1, p": { marginTop: 0 },
   },
-  ResultImageContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    maxWidth: 200,
-  },
+  // ResultImageContainer: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   justifyContent: "center",
+  //   maxWidth: 200,
+  // },
   RatingsSection: {
     display: "flex",
+    justifyContent: "center",
+    gap:10,
+    '@media (min-width: 500px)': {
+      justifyContent: "left",
+    }
   },
 });
 
@@ -94,7 +106,7 @@ const ResultCard = ({ restaurant }:Restaurant ) => {
   const classes = useStyles();
   return (
     <div className={classes.ResultCard} key={id}>
-      <a className={classes.ResultImageContainer} href={url}>
+      <a href={url}>
         <img
           style={{
             width: "inherit",
