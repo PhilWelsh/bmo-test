@@ -32,8 +32,8 @@ const getRestaurants = (searchValues) => async (dispatch) => {
           params.append("city_id", c.id);
           return c.name;
         });
-        if (searchValues.details) {
-          params.append("q", searchValues.details);
+        if (searchValues.keywords) {
+          params.append("q", searchValues.keywords);
         }
         dispatch({
           type: GET_CITIES,

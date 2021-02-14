@@ -7,11 +7,11 @@ import Container from "./Container";
 
 const SearchBar = () => {
   const cityRef = useRef(null);
-  const detailsRef = useRef(null);
+  const keywordsRef = useRef(null);
   const dispatch = useDispatch();
   const [searchValues, setSearchValues] = useState({
     city: "",
-    details: "",
+    keywords: "",
     priceRangeLow: 0,
     priceRangeHigh: Infinity,
     ratingLow: 0,
@@ -30,22 +30,28 @@ const SearchBar = () => {
       flexWrap: "wrap",
       "& label": {
         display: "block",
+        maxWidth:300,
+        width:"100%",
         textAlign: "left",
         fontSize: "1rem",
         marginBottom: 0,
       },
       "& input": {
         display: "block",
+        width:"-webkit-fill-available"
       },
     },
-    SearchInput: {},
+    SearchInput: {
+      borderRadius: 5,
+      padding: "7px 10px",
+    },
   });
 
   const handleCityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, city: e.target.value });
   };
-  const handleDetailsChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValues({ ...searchValues, details: e.target.value });
+  const handleKeywordsChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValues({ ...searchValues, keywords: e.target.value });
   };
   // eslint-disable-next-line consistent-return
   useEffect(() => {
@@ -81,16 +87,16 @@ const SearchBar = () => {
             onChange={handleCityChange}
           />
         </label>
-        <label htmlFor="detailsInput">
-          Details
+        <label htmlFor="keywordsInput">
+          Keywords
           <input
             className={classes.SearchInput}
             type="text"
-            id="detailsInput"
-            ref={detailsRef}
-            aria-label="detailsInput"
-            placeholder="other search details"
-            onChange={handleDetailsChange}
+            id="keywordsInput"
+            ref={keywordsRef}
+            aria-label="keywordsInput"
+            placeholder="other search keywords"
+            onChange={handleKeywordsChange}
           />
         </label>
       </form>
