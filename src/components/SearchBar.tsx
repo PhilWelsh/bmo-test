@@ -1,7 +1,8 @@
 import * as React from "react"
-import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useRef, useEffect } from "react";
+import {useSelector,useDispatch} from "react-redux"
 import { createUseStyles } from "react-jss";
+import AsyncSelect from 'react-select/async'
 // import getRestaurants from "../store/actions/getRestaurants";
 import Container from "./Container";
 
@@ -17,6 +18,14 @@ const SearchBar = () => {
     ratingLow: 0,
     ratingHigh: 5,
   });
+  const handleSelectChange=(selectedOption:any)=>{
+    console.log(selectedOption)
+  }
+  const loadOptions = useSelector(( {data}:any) => data ? data.possibleCities : null);
+
+useEffect(()=>{
+  console.log(loadOptions)
+},loadOptions)
 
   const useStyles = createUseStyles({
     SearchBar: {
@@ -50,6 +59,8 @@ const SearchBar = () => {
     setSearchValues({ ...searchValues, keywords: e.target.value });
   };
 
+  
+
   const classes = useStyles();
   return (
     <Container>
@@ -69,6 +80,12 @@ const SearchBar = () => {
             onChange={handleCityChange}
           />
         </label>
+        <AsyncSelect
+          cacheOptions
+          loadOptions={loadOptions}
+          defaultOptions
+          onInputChange={handleSelectChange}
+        />
         <label htmlFor="keywordsInput">
           Keywords
           <input

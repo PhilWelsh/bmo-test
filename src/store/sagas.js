@@ -19,7 +19,11 @@ function* fetchCities(action) {
   const { city } = action.payload;
   console.log(city);
   try {
-    yield call(getCities, city);
+    const response = yield call(getCities, city);
+    yield put({
+      type: "GET_CITIES_SUCCEEDED",
+      payload: response,
+    });
   } catch (error) {
     yield put({ type: "GET_CITIES_FAILED", error });
   }

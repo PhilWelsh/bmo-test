@@ -1,9 +1,3 @@
-import {
-  GET_RESTAURANTS,
-  RESTAURANTS_ERROR,
-  LOADING_RESTAURANTS,
-} from "../types";
-
 const initialState = {
   possibleCities: [],
   restaurants: [],
@@ -13,19 +7,19 @@ const initialState = {
 
 const restaurantReducers = (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_RESTAURANTS:
+    case "LOADING_RESTAURANTS":
       return {
         ...state,
         loading: true,
         init: false,
       };
-    case GET_RESTAURANTS:
+    case "GET_RESTAURANTS_SUCCEEDED":
       return {
         ...state,
         restaurants: action.payload,
         loading: false,
       };
-    case RESTAURANTS_ERROR:
+    case "GET_RESTAURANTS_FAILED":
       return {
         loading: false,
         error: action.payload,

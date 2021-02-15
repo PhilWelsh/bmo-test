@@ -1,5 +1,6 @@
 const initialState = {
   possibleCities: [],
+  restaurants: [],
   loading: false,
   init: true,
 };

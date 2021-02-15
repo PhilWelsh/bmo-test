@@ -1,9 +1,7 @@
 import axios from "axios";
-import { put } from "redux-saga/effects";
 
-function* getCities (city) {
-  console.log("hi");
-  return axios
+const getCities = (city) =>
+  axios
     .get("https://developers.zomato.com/api/v2.1/cities", {
       headers: {
         "user-key": process.env.REACT_APP_ZOMATO_API_KEY,
@@ -14,12 +12,6 @@ function* getCities (city) {
       const cities = data.location_suggestions.filter((match) =>
         match.name.toLowerCase().includes(city.toLowerCase())
       );
-      const mappedCityNames = cities.map((c) => c.name);
-      console.log(mappedCityNames);
-      yield put({
-        type: "GET_CITIES_SUCCEEDED",
-        payload: mappedCityNames,
-      });
+      return cities.map((c) => c.name);
     });
-};
 export default getCities;
