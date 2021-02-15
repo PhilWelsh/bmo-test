@@ -1,8 +1,8 @@
 import * as React from "react"
-import { useState, useEffect, useRef } from "react";
+import { useState,  useRef } from "react";
 import { useDispatch } from "react-redux";
 import { createUseStyles } from "react-jss";
-import getRestaurants from "../store/actions/getRestaurants";
+import getCities from "../store/actions/getCities";
 import Container from "./Container";
 
 const SearchBar = () => {
@@ -48,20 +48,20 @@ const SearchBar = () => {
   });
 
   const handleCityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(getCities);
     setSearchValues({ ...searchValues, city: e.target.value });
   };
   const handleKeywordsChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, keywords: e.target.value });
   };
   // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    if (searchValues.city.length > 0) {
-      const debouncedRequest = setTimeout(() => {
-        dispatch(getRestaurants(searchValues));
-      }, 1000);
-      return () => clearTimeout(debouncedRequest);
-    }
-  }, [searchValues]);
+  // useEffect(() => {
+  //   ()=>
+  //   return
+  //   //  const debouncedRequest = setTimeout(() => {}, 0);
+  //   // return () => clearTimeout(debouncedRequest);   
+  //   // if (searchValues.city.length > 0) {}
+  // }, [searchValues]);
 
   // useEffect(() => {
   //   autocomplete(cityRef.current, possibleCities);

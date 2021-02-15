@@ -6,7 +6,8 @@
     "react/jsx-filename-extension":"off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "no-nested-ternary":"off"
+    "no-nested-ternary":"off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx",".ts",".tsx"] }],
     //   ]
     }

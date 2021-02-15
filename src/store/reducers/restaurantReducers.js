@@ -1,8 +1,8 @@
 import {
   GET_RESTAURANTS,
-  RESTAURANTS_ERROR,
+  GET_CITIES_FAILED,
   LOADING_RESTAURANTS,
-  GET_CITIES,
+  GET_CITIES_REQUESTED,
 } from "../types";
 
 const initialState = {
@@ -26,12 +26,12 @@ const restaurantReducers = (state = initialState, action) => {
         restaurants: action.payload,
         loading: false,
       };
-    case RESTAURANTS_ERROR:
+    case GET_CITIES_FAILED:
       return {
         loading: false,
         error: action.payload,
       };
-    case GET_CITIES:
+    case GET_CITIES_REQUESTED:
       return {
         ...state,
         possibleCities: action.payload,
