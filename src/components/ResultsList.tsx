@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { createUseStyles } from "react-jss";
+// import { createUseStyles } from "react-jss";
 // import {Restaurant} from "../interfaces"
-import ResultCard from "./ResultCard";
 import Container from "./Container";
+// import ResultCard from "./ResultCard";
 
-const useStyles = createUseStyles({
-  cityTag: {
-    padding: 5,
-    margin: 5,
-    border: "1px solid white",
-    borderRadius: 5,
-    fontSize: "1rem",
-  },
-});
+// const useStyles = createUseStyles({
+//   cityTag: {
+//     padding: 5,
+//     margin: 5,
+//     border: "1px solid white",
+//     borderRadius: 5,
+//     fontSize: "1rem",
+//   },
+// });
 
 // interface RestaurantData{
 //       loading:boolean, 
@@ -26,12 +26,14 @@ const useStyles = createUseStyles({
 //   data:RestaurantData
 // }
 const RestaurantsList = () => {
-  const classes = useStyles();
-  const restaurantData = useSelector(( {...data}:any) => data.restaurants);
-  const { loading, error, restaurants, init, possibleCities } = restaurantData
+  // const classes = useStyles();
+  // const restaurantData = useSelector(( {...data}:any) => data.restaurants);
+  // const { loading, error, restaurants, init, possibleCities } = restaurantData
+  const restaurantData = useSelector(( data:any) => data);
+  useEffect(()=> console.log(restaurantData),[restaurantData])
   return (
     <Container>
-      {init ? (
+      {/* {init ? (
         "Search for a restaurant using the fields above"
       ) : loading ? (
         "Searching..."
@@ -54,8 +56,8 @@ const RestaurantsList = () => {
             `No results available`
           )}
         </>
-      )}
-      {restaurants.map((r:any) => <ResultCard key={r.id} restaurant={r} />)}
+      )} 
+      {restaurants.map((r:any) => <ResultCard key={r.id} restaurant={r} />)} */}
     </Container>
   );
 };

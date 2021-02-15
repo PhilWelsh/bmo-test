@@ -2,7 +2,6 @@ import {
   GET_RESTAURANTS,
   RESTAURANTS_ERROR,
   LOADING_RESTAURANTS,
-  GET_CITIES,
 } from "../types";
 
 const initialState = {
@@ -30,11 +29,6 @@ const restaurantReducers = (state = initialState, action) => {
       return {
         loading: false,
         error: action.payload,
-      };
-    case GET_CITIES:
-      return {
-        ...state,
-        possibleCities: action.payload,
       };
     default:
       return state;

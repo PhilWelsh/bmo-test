@@ -1,8 +1,8 @@
 import * as React from "react"
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { createUseStyles } from "react-jss";
-import getRestaurants from "../store/actions/getRestaurants";
+// import getRestaurants from "../store/actions/getRestaurants";
 import Container from "./Container";
 
 const SearchBar = () => {
@@ -17,11 +17,6 @@ const SearchBar = () => {
     ratingLow: 0,
     ratingHigh: 5,
   });
-//
-  // for autocomplete
-  // const citiesList = useSelector(
-  //   (possibleCities) => possibleCities.possibleCities || "none"
-  // );
 
   const useStyles = createUseStyles({
     SearchBar: {
@@ -49,25 +44,12 @@ const SearchBar = () => {
 
   const handleCityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, city: e.target.value });
+    dispatch({type: 'GET_CITIES_REQUESTED', payload:{city: e.target.value}})    
   };
   const handleKeywordsChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValues({ ...searchValues, keywords: e.target.value });
   };
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    if (searchValues.city.length > 0) {
-      const debouncedRequest = setTimeout(() => {
-        dispatch(getRestaurants(searchValues));
-      }, 1000);
-      return () => clearTimeout(debouncedRequest);
-    }
-  }, [searchValues]);
 
-  // useEffect(() => {
-  //   autocomplete(cityRef.current, possibleCities);
-  //   console.log('possibleCities');
-  //   console.log(citiesList?.possibleCities);
-  // }, [citiesList]);
   const classes = useStyles();
   return (
     <Container>
