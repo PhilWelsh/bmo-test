@@ -17,7 +17,7 @@ const SearchBar = () => {
     ratingLow: 0,
     ratingHigh: 5,
   });
-
+//
   // for autocomplete
   // const citiesList = useSelector(
   //   (possibleCities) => possibleCities.possibleCities || "none"
